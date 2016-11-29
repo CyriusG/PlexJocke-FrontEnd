@@ -1,0 +1,278 @@
+body {
+    background: #1a1a1a;
+    color: #EEEEEE;
+    font-size: 12pt;
+    font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+    font-size: 20pt;
+    color: #cc7b19;
+    margin-top: 10px;
+}
+
+.btn-request, .btn-request:active {
+    width: 130px;
+    background-color: transparent;
+    padding: 0.7em 1em;
+    text-decoration: none;
+    outline: 0 !important;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.btn-request.idle {
+    color: #cc7b19;
+    border: 2px solid #cc7b19;
+    transition: all 0.3s;
+}
+
+.btn-request.idle:hover {
+    background: #cc7b19;
+    color: #EEEEEE;
+}
+
+.btn-request.error {
+    background: #B74947;
+    color: #EEEEEE;
+    border: 2px solid #B74947;
+    transition: all 0.3s;
+}
+
+.btn-request.error:hover {
+    cursor: default;
+}
+
+.btn-request.success {
+    background: #468847;
+    color: #EEEEEE;
+    border: 2px solid #468847;
+    transition: all 0.3s;
+}
+
+.btn-request.success:hover {
+    cursor: default;
+}
+
+.btn-request.loading {
+    opacity: 0.8;
+    background: #cc7b19;
+    color: #EEEEEE;
+    border: 2px solid #cc7b19;
+    transition: all 0.3s;
+}
+
+.btn-request.loading i {
+    height: 14px;
+    width: 14px;
+}
+
+.btn-request.loading:hover {
+    cursor: default;
+}
+
+.btn-delete {
+    width: 130px;
+    background-color: transparent;
+    padding: 0.7em 1em;
+    margin-top: 10px;
+    text-decoration: none;
+    outline: 0 !important;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #B74947;
+    border: 2px solid #B74947;
+    transition: all 0.3s;
+}
+
+.btn-delete:hover, .btn-delete:active {
+    background-color: #B74947;
+    color: #FFFFFF;
+    transition: all 0.3s;
+}
+
+.btn-delete.loading {
+    background-color: #B74947;
+    cursor: default;
+    color: #FFFFFF;
+    opacity: 0.8;
+    transition: all 0.3s;
+}
+
+
+.btn-searchTab {
+    border: 0;
+    background: transparent;
+    padding: 5px 15px 5px 15px;
+    transition: color 0.3s;
+    outline: none;
+}
+
+.btn-searchTab:hover, .btn-searchTab:active {
+    color: #cc7b19;
+    transition: color 0.3s;
+}
+
+.btn-searchTab.active, .btn-searchTab.active:hover .btn-searchTab.active:active  {
+    background: #cc7b19;
+    color: #EEEEEE;
+}
+
+.navbar {
+    margin-bottom: 0;
+    border: 0;
+    background: #000000;
+}
+
+.navbar-brand {
+    color: #EEEEEE !important;
+}
+
+.navbar-brand-alt {
+    color: #cc7b19;
+    transition: color 0.3s;
+}
+
+.navbar-brand:hover .navbar-brand-alt {
+    color: #EEEEEE;
+    transition: color 0.3s;
+}
+
+.navbar .navbar-nav > li > a {
+    color: #999999;
+    transition: color 0.3s;
+}
+
+.navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:active {
+    color: #EEEEEE;
+    transition: color 0.3s;
+}
+
+.active {
+    color: #EEEEEE !important;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #222222;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+    background: #222222;
+}
+
+.notification {
+    position: fixed;
+    z-index: 1019;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    color: #ffffff;
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.notification-enter {
+    bottom: -50px;
+}
+
+.notification-enter.notification-enter-active {
+    bottom: 0;
+    transition: bottom 0.2s ease;
+}
+
+.notification-leave {
+    bottom: 0;
+}
+
+.notification-leave.notification-leave-active {
+    bottom: -50px;
+    transition: bottom 0.2s ease;
+}
+
+.notification-success {
+    background: #468847;
+}
+
+.notification-error {
+    background: #B74947;
+}
+
+.footer {
+    height: 50px;
+}
+
+.searchBar {
+    height: 64px;
+    margin-top: 20px;
+}
+
+.searchBarInput {
+    background: #222222;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    outline: none;
+    border: 0;
+    width: 100%;
+    display: inline-block;
+}
+
+.searchResult {
+    float: left;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 3px dotted #353535;
+}
+
+.searchResult-enter {
+    opacity: 0;
+}
+
+.searchResult-enter.searchResult-enter-active {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.searchResult-leave {
+    opacity: 1;
+}
+
+.searchResult-leave.searchResult-leave-active {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.searchResult-poster {
+    max-height: 276px;
+    max-width: 184px;
+}
+
+.searchResult-poster-mobile {
+    max-height: 69px;
+    max-width: 46px;
+}
+
+.loader-wrapper {
+    height: 4px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.loader-bar{
+    display: block;
+    position: absolute;
+    left: -200px;
+    width: 200px;
+    height: 4px;
+    background-color: #cc7b19;
+    animation: loading 1.5s linear infinite;
+}
+
+@keyframes loading {
+    from {left: -200px;}
+    to {left: 100%;}
+}
