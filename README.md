@@ -1,1 +1,1 @@
-# Plexrequests - CyriusG
+# Plexrequests - CyriusG (frontend)

@@ -1,7 +1,7 @@
 import React from "react";
 
-import SearchStore from "../stores/SearchStore";
-import * as SearchActions from "../actions/SearchActions";
+import SearchStore from "../stores/RequestStore";
+import * as SearchActions from "../actions/RequestActions";
 
 import Result from "../components/Search/Result";
 import Searchbar from "../components/Search/Searchbar";

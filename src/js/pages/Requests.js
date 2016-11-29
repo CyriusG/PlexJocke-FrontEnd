@@ -3,7 +3,7 @@ import React from "react";
 import Tab from "../components/Tab";
 import Requests from "../components/Request/Requests";
 
-import SearchStore from "../stores/SearchStore";
+import SearchStore from "../stores/RequestStore";
 
 export default class Request extends React.Component {
     constructor() {

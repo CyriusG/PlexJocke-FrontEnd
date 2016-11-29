@@ -41,7 +41,7 @@ export default class Header extends React.Component {
                     <div className={"navbar-collapse " + collapsed} id="navbar">
                         <ul className="nav navbar-nav">
                             <li><IndexLink activeClassName="active" to="/">Search</IndexLink></li>
-                            <li><Link activeClassName="active" to="/requests">Requests</Link></li>
+                            <li><Link activeClassName="active" to="/requests/">Requests</Link></li>
                         </ul>
                     </div>
                 </div>

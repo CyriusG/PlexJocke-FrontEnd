@@ -1,7 +1,7 @@
 import React from "react";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
-import SearchStore from "../stores/SearchStore";
+import SearchStore from "../stores/RequestStore";
 
 export default class Notification extends React.Component {
     constructor() {

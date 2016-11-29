@@ -1,27 +1,39 @@
 import React from "react";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 import axios from "axios";
 
 import Movie from "./Movie";
+
+import RequestStore from "../../stores/RequestStore";
 
 export default class Requests extends React.Component {
     constructor() {
         super();
 
         this.state = {
-            requests: []
+            requests: [],
         };
+
+        this.bound_generateRequests = this.generateRequests.bind(this);
     }
 
     componentWillMount() {
-        this.generateRequests(this.props.activeTab);
+        this.generateRequests();
+        RequestStore.on("request_deleted_movie", this.bound_generateRequests);
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.generateRequests(nextProps.activeTab);
+    componentWillReceiveProps() {
+        this.generateRequests();
     }
 
-    generateRequests(activeTab) {
+    componentWillUnmount() {
+        RequestStore.removeListener("request_deleted_movie", this.bound_generateRequests);
+    }
+
+    generateRequests() {
+        const { activeTab } = this.props;
+
         if(activeTab == "movies") {
             axios.get("http://localhost:8000/movie/").then((response) => {
                 this.setState({
@@ -60,7 +72,12 @@ export default class Requests extends React.Component {
 
         return(
             <div>
-                {requestComponents}
+                <ReactCSSTransitionGroup
+                    transitionName="searchResult"
+                    transitionEnterTimeout={300}
+                    transitionLeaveTimeout={300}>
+                    {requestComponents}
+                </ReactCSSTransitionGroup>
             </div>
         );
     }

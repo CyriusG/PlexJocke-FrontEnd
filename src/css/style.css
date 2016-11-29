@@ -11,6 +11,14 @@ h2 {
     margin-top: 10px;
 }
 
+.fa-times {
+    color: #B74947;
+}
+
+.fa-check {
+    color: #468847;
+}
+
 .btn-request, .btn-request:active {
     width: 130px;
     background-color: transparent;
@@ -80,15 +88,22 @@ h2 {
     outline: 0 !important;
     cursor: pointer;
     border-radius: 5px;
-    color: #B74947;
     border: 2px solid #B74947;
     transition: all 0.3s;
 }
 
-.btn-delete:hover, .btn-delete:active {
+.btn-delete.idle {
+    color: #B74947;
+}
+
+.btn-delete.idle:hover, .btn-delete.idle:active {
     background-color: #B74947;
     color: #FFFFFF;
     transition: all 0.3s;
+}
+
+.btn-delete.error {
+    color: #B74947;
 }
 
 .btn-delete.loading {

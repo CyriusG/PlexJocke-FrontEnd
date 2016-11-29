@@ -4,7 +4,7 @@ import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import Movie from "./Result/Movie";
 import Show from "./Result/Show";
 
-import SearchStore from "../../stores/SearchStore";
+import SearchStore from "../../stores/RequestStore";
 
 export default class Result extends React.Component {
     constructor() {

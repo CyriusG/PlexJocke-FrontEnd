@@ -69,6 +69,10 @@ class SearchStore extends EventEmitter {
                 this.emit("request_movie_success");
                 break;
             }
+            case "REQUEST_DELETED_MOVIE": {
+                this.emit("request_deleted_movie");
+                break;
+            }
         }
     }
 }
