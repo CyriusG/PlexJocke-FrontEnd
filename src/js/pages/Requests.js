@@ -3,40 +3,77 @@ import React from "react";
 import Tab from "../components/Tab";
 import Requests from "../components/Request/Requests";
 
-import SearchStore from "../stores/RequestStore";
+import RequestStore from "../stores/RequestStore";
+import * as RequestActions from "../actions/RequestActions";
 
 export default class Request extends React.Component {
     constructor() {
         super();
         this.state = {
-            activeTab: SearchStore.getActiveTab(),
-            requests: []
+            loading: false,
+            activeTab: RequestStore.getActiveTab(),
+            requests: RequestStore.getRequests()
         };
 
         this.bound_activeTabChanged = this.activeTabChanged.bind(this);
+        this.bound_fetchingRequests = this.fetchingRequests.bind(this);
+        this.bound_receivedRequests = this.receivedRequests.bind(this);
     }
 
     componentWillMount() {
-        SearchStore.on("active_tab_changed", this.bound_activeTabChanged);
+        RequestStore.on("active_tab_changed", this.bound_activeTabChanged);
+        RequestStore.on("fetching_requests", this.bound_fetchingRequests);
+        RequestStore.on("received_requests", this.bound_receivedRequests);
+
+        if(this.state.activeTab == "movies") {
+            RequestActions.getMovieRequests();
+        }
+        else {
+            RequestActions.getShowRequests();
+        }
     }
 
     componentWillUnmount () {
-        SearchStore.removeListener("active_tab_changed", this.bound_activeTabChanged);
+        RequestStore.removeListener("active_tab_changed", this.bound_activeTabChanged);
+        RequestStore.removeListener("fetching_requests", this.bound_fetchingRequests);
+        RequestStore.removeListener("received_requests", this.bound_receivedRequests);
     }
 
     activeTabChanged() {
         this.setState({
-            activeTab: SearchStore.getActiveTab()
+            activeTab: RequestStore.getActiveTab()
         });
     }
 
-    changeTab(tab, searchTerm) {
+    fetchingRequests() {
+        this.setState({
+            loading: true
+        });
+    }
+
+    receivedRequests() {
+        this.setState({
+            requests: RequestStore.getRequests(),
+            loading: false
+        });
+    }
+
+    changeTab(tab) {
         if(this.state.activeTab != tab && tab != undefined) {
-            SearchStore.setActiveTab(tab);
+            RequestStore.setActiveTab(tab);
+
+            if(tab == "movies") {
+                RequestActions.getMovieRequests();
+            }
+            else {
+                RequestActions.getShowRequests();
+            }
         }
     }
 
     render() {
+        const { activeTab, requests, loading } = this.state;
+
         return(
             <div className="container">
                 <div className="row">
@@ -48,11 +85,12 @@ export default class Request extends React.Component {
                 <div className="row">
                     <div className="col-xs-12">
                         <div className="searchBar">
-                            <Tab active={this.state.activeTab} changeTab={this.changeTab.bind(this)} />
+                            <Tab active={activeTab} changeTab={this.changeTab.bind(this)} />
+                            {loading ? <div className="loader-wrapper"><div className="loader-bar"></div></div> : null}
                         </div>
                     </div>
                 </div>
-                <Requests activeTab={this.state.activeTab} />
+                <Requests requests={requests}/>
             </div>
         );
     }

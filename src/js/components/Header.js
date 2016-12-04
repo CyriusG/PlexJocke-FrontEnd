@@ -36,7 +36,7 @@ export default class Header extends React.Component {
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a className="navbar-brand" href="#">Plex<span className="navbar-brand-alt">Jocke</span></a>
+                        <a className="navbar-brand">Plex<span className="navbar-brand-alt">Jocke</span></a>
                     </div>
                     <div className={"navbar-collapse " + collapsed} id="navbar">
                         <ul className="nav navbar-nav">

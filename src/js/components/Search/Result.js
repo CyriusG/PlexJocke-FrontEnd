@@ -11,7 +11,8 @@ export default class Result extends React.Component {
         super();
 
         this.state = {
-            results: SearchStore.getAll()
+            results: SearchStore.getSearchResult(),
+            seasonModal: false
         };
 
         this.bound_activeTabChanged = this.activeTabChanged.bind(this);
@@ -30,20 +31,24 @@ export default class Result extends React.Component {
 
     activeTabChanged() {
         this.setState({
-            results: SearchStore.getAll()
+            results: SearchStore.getSearchResult()
         });
     }
 
     searchResultsReceived() {
         this.setState({
-            results: SearchStore.getAll()
+            results: SearchStore.getSearchResult()
         });
+    }
+
+    toggleSeasonModal() {
+
     }
 
     render() {
 
         const { results } = this.state;
-        const { activeTab } = this.props
+        const { activeTab } = this.props;
 
         let resultComponents = null;
 
@@ -81,11 +86,12 @@ export default class Result extends React.Component {
                 }
 
                 return <Show key={result.show.id}
-                              id={result.show.id}
-                              title={result.show.name}
-                              overview={result.show.summary.replace(/<\/?[^>]+(>|$)/g, "")}
-                              poster={image}
-                              date={result.show.premiered}
+                             id={result.show.id}
+                             title={result.show.name}
+                             tvdb_id={result.show.externals.thetvdb}
+                             overview={result.show.summary.replace(/<\/?[^>]+(>|$)/g, "")}
+                             poster={image}
+                             date={result.show.premiered}
                 />;
             });
         }

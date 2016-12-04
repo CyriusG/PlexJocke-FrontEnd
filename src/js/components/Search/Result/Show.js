@@ -1,6 +1,79 @@
 import React from "react";
+import dispatcher from "../../../dispatcher";
+
+import axios from "axios";
+
+import ShowButton, {STATE} from "./ShowButton";
 
 export default class Show extends React.Component {
+    constructor() {
+        super();
+
+        this.state = {
+            buttonState: STATE.NOTHING
+        };
+    }
+
+    requestShow(user, user_email, seasons) {
+        this.setState({
+            buttonState: STATE.LOADING
+        });
+
+        const { id, title, tvdb_id, date, poster } = this.props;
+
+
+        axios.get("http://api.tvmaze.com/shows/" + id + "/seasons").then((response) => {
+
+            let numSeasons;
+            let requestedSeasons;
+
+            if(response.data[response.data.length - 1].premiereDate == null) {
+                numSeasons = response.data.length - 1;
+            }
+            else {
+                numSeasons = response.data.length;
+            }
+
+            if(seasons == -1) {
+                requestedSeasons = seasons;
+            }
+            else if(seasons == -2) {
+                requestedSeasons = "" + numSeasons;
+            }
+
+            axios.post("http://localhost:8000/show/create/", {
+                title,
+                seasons: requestedSeasons,
+                release_date: date,
+                tvdb_id,
+                poster,
+                user,
+                user_email
+            }).then((response) => {
+                this.setState({
+                    buttonState: STATE.SUCCESS
+                });
+
+                dispatcher.dispatch({
+                    type: "REQUEST_SHOW_SUCCESS"
+                })
+            }).catch((error) => {
+                this.setState({
+                    buttonState: STATE.ERROR
+                });
+
+                dispatcher.dispatch({
+                    type: "REQUEST_SHOW_ERROR",
+                    data: error.response.data.message
+                })
+            });
+        }).catch((error) => {
+            this.setState({
+                buttonState: STATE.ERROR
+            });
+        });
+    }
+
     render() {
         const { date, id, overview, poster, title } = this.props;
 
@@ -21,6 +94,9 @@ export default class Show extends React.Component {
                     <div className="col-md-9 col-sm-8">
                         <h2>{title} {year}</h2>
                         <p>{overview}</p>
+                        <ShowButton key={id} state={this.state.buttonState} requestShow={this.requestShow.bind(this)}>
+                            Request
+                        </ShowButton>
                     </div>
                 </div>
             </div>

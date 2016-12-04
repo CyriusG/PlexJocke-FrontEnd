@@ -11,6 +11,10 @@ h2 {
     margin-top: 10px;
 }
 
+.navbar-brand, .navbar-brand-alt {
+    cursor: default;
+}
+
 .fa-times {
     color: #B74947;
 }
@@ -77,6 +81,32 @@ h2 {
 
 .btn-request.loading:hover {
     cursor: default;
+}
+
+.btn-group {
+    border-radius: 5px !important;
+}
+
+.dropdown-menu {
+    background: #222222;
+}
+
+.dropdown-menu>li>a {
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.dropdown-menu>li>a {
+    transition: background 0.3s;
+}
+
+.dropdown-menu>li>a:hover {
+    background: #333333;
+    color: #FFFFFF;
+}
+
+.expanded {
+    display: inline !important;
 }
 
 .btn-delete {

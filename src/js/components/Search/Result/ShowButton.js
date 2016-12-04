@@ -12,7 +12,8 @@ export default class ShowButton extends React.Component {
         super();
 
         this.state = {
-            currentState: STATE.NOTHING
+            currentState: STATE.NOTHING,
+            dropdown: "",
         };
     }
 
@@ -49,14 +50,14 @@ export default class ShowButton extends React.Component {
         switch(state) {
             case STATE.ERROR: {
                 return(
-                    <button onClick={this.handleRequest.bind(this)} className="btn btn-request error pull-right">
+                    <button className="btn btn-request error pull-right">
                         <span>Error</span>
                     </button>
                 );
             }
             case STATE.LOADING: {
                 return(
-                    <button onClick={this.handleRequest.bind(this)} className="btn btn-request loading pull-right">
+                    <button className="btn btn-request loading pull-right">
                         <span>
                             <i class="fa fa-cog fa-spin"></i> Requesting...
                         </span>
@@ -65,19 +66,46 @@ export default class ShowButton extends React.Component {
             }
             case STATE.NOTHING: {
                 return(
-                    <button onClick={this.handleRequest.bind(this)} className="btn btn-request idle pull-right">
-                        <span>{content}</span>
-                    </button>
+                    <div className="btn-group pull-right">
+                        <button type="button" onClick={this.expandDropdown.bind(this)} className={"btn btn-request idle dropdown-toggle " + this.state.dropdown}>
+                            Request <span className="caret" />
+                        </button>
+                        <ul className={"dropdown-menu " + this.state.dropdown}>
+                            <li><a onClick={this.requestAllSeasons.bind(this)}>All Seasons</a></li>
+                            <li><a onClick={this.requestLatestSeason.bind(this)}>Latest Season</a></li>
+                        </ul>
+                    </div>
                 );
             }
             case STATE.SUCCESS: {
                 return(
-                    <button onClick={this.handleRequest.bind(this)} className="btn btn-request success pull-right">
+                    <button className="btn btn-request success pull-right">
                         <span>Success</span>
                     </button>
                 );
             }
         }
+    }
+
+    expandDropdown() {
+        if(this.state.dropdown == "") {
+            this.setState({
+                dropdown: "expanded",
+            });
+        }
+        else {
+            this.setState({
+                dropdown: "",
+            });
+        }
+    }
+
+    requestAllSeasons() {
+        this.props.requestShow("CyriusG", "joacim@cyriusg.se", "-1");
+    }
+
+    requestLatestSeason() {
+        this.props.requestShow("CyriusG", "joacim@cyriusg.se", "-2");
     }
 
     handleRequest(e) {
@@ -97,7 +125,7 @@ export default class ShowButton extends React.Component {
     }
 
     loading() {
-        this.setState({currentState: STATE.LOADING});
+        this.setState({currentState: STATE.LOADING, dropdown: ""});
     }
 
     notLoading() {
@@ -108,14 +136,14 @@ export default class ShowButton extends React.Component {
 
     success() {
         this.setState({currentState: STATE.SUCCESS});
+        this.timer = setTimeout(() => {
+            this.notLoading();
+        }, 3000);
     }
 
     render() {
-
         const { children, id } = this.props;
-
         const { currentState } = this.state;
-
         const button = this.genButton(currentState, children, id);
 
         return(

@@ -13,21 +13,21 @@ export default class Notification extends React.Component {
             message: SearchStore.getMessage()
         };
 
-        this.bound_searchResultsFetchError = this.searchResultsFetchError.bind(this);
-        this.bound_searchResultsFetchSuccess = this.searchResultsFetchSuccess.bind(this);
+        this.bound_requestError = this.requestError.bind(this);
+        this.bound_requestSuccess = this.requestSuccess.bind(this);
     }
 
     componentWillMount() {
-        SearchStore.on("request_movie_error", this.bound_searchResultsFetchError);
-        SearchStore.on("request_movie_success", this.bound_searchResultsFetchSuccess);
+        SearchStore.on("request_error", this.bound_requestError);
+        SearchStore.on("request_success", this.bound_requestSuccess);
     }
 
     componentWillUnmount() {
-        SearchStore.removeListener("request_movie_error", this.bound_searchResultsFetchError);
-        SearchStore.removeListener("request_movie_success", this.bound_searchResultsFetchSuccess);
+        SearchStore.removeListener("request_error", this.bound_requestError);
+        SearchStore.removeListener("request_success", this.bound_requestSuccess);
     }
 
-    searchResultsFetchError() {
+    requestError() {
         this.setState({
             visible: true,
             type: "notification-error",
@@ -41,7 +41,7 @@ export default class Notification extends React.Component {
         }, 3000);
     }
 
-    searchResultsFetchSuccess() {
+    requestSuccess() {
         this.setState({
             visible: true,
             type: "notification-success",

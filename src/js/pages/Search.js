@@ -1,7 +1,7 @@
 import React from "react";
 
-import SearchStore from "../stores/RequestStore";
-import * as SearchActions from "../actions/RequestActions";
+import RequestStore from "../stores/RequestStore";
+import * as RequestActions from "../actions/RequestActions";
 
 import Result from "../components/Search/Result";
 import Searchbar from "../components/Search/Searchbar";
@@ -11,96 +11,114 @@ export default class Search extends React.Component {
         super();
         this.state = {
             results: null,
-            activeTab: SearchStore.getActiveTab()
+            activeTab: RequestStore.getActiveTab()
         };
 
         this.bound_activeTabChanged = this.activeTabChanged.bind(this);
         this.bound_searchResultsFetching = this.searchResultsFetching.bind(this);
-        this.bound_searchResultsFetchError = this.searchResultsFetchError.bind(this);
+        this.bound_requestError = this.searchResultsFetchError.bind(this);
         this.bound_searchResultsReceived = this.searchResultsReceived.bind(this);
     }
 
     componentWillMount() {
         this.timer = null;
 
-        SearchStore.on("active_tab_changed", this.bound_activeTabChanged);
-        SearchStore.on("search_results_fetching", this.bound_searchResultsFetching);
-        SearchStore.on("search_results_fetch_error", this.bound_searchResultsFetchError);
-        SearchStore.on("search_results_received", this.bound_searchResultsReceived);
+        RequestStore.on("active_tab_changed", this.bound_activeTabChanged);
+        RequestStore.on("search_results_fetching", this.bound_searchResultsFetching);
+        RequestStore.on("search_results_fetch_error", this.bound_requestError);
+        RequestStore.on("search_results_received", this.bound_searchResultsReceived);
+
+        const searchTerm = RequestStore.getSearchTerm();
+        const activeTab = RequestStore.getActiveTab();
+
+        if(searchTerm != "") {
+            if(activeTab == "movies") {
+                RequestActions.searchMovie(searchTerm);
+            }
+            else {
+                RequestActions.searchTV(searchTerm);
+            }
+        }
     }
 
     componentWillUnmount () {
         clearTimeout(this.timer);
 
-        SearchStore.removeListener("active_tab_changed", this.bound_activeTabChanged);
-        SearchStore.removeListener("search_results_fetching", this.bound_searchResultsFetching);
-        SearchStore.removeListener("search_results_fetch_error", this.bound_searchResultsFetchError);
-        SearchStore.removeListener("search_results_received", this.bound_searchResultsReceived);
+        RequestStore.removeListener("active_tab_changed", this.bound_activeTabChanged);
+        RequestStore.removeListener("search_results_fetching", this.bound_searchResultsFetching);
+        RequestStore.removeListener("search_results_fetch_error", this.bound_requestError);
+        RequestStore.removeListener("search_results_received", this.bound_searchResultsReceived);
     }
 
     activeTabChanged() {
         this.setState({
-            activeTab: SearchStore.getActiveTab()
+            activeTab: RequestStore.getActiveTab()
         });
     }
 
     searchResultsFetching() {
         this.setState({
-            loading: SearchStore.loading
+            loading: RequestStore.loading
         });
     }
 
     searchResultsFetchError() {
         this.setState({
-            error: SearchStore.error,
-            loading: SearchStore.loading
+            error: RequestStore.error,
+            loading: RequestStore.loading
         });
     }
 
     searchResultsReceived() {
         this.setState({
-            loading: SearchStore.loading
+            loading: RequestStore.loading
         });
     }
 
-    changeTab(tab, searchTerm) {
+    changeTab(tab) {
         if(this.state.activeTab != tab && tab != undefined) {
-            SearchStore.setActiveTab(tab);
+            RequestStore.setActiveTab(tab);
+
+            const searchTerm = RequestStore.getSearchTerm();
 
             if(searchTerm != "") {
                 if (tab == "movies") {
-                    SearchActions.searchMovie(searchTerm);
+                    RequestActions.searchMovie(searchTerm);
                 }
                 else if (tab == "tv") {
-                    SearchActions.searchTV(searchTerm);
+                    RequestActions.searchTV(searchTerm);
                 }
             }
         }
     }
 
-    searchMovie(searchTerm) {
+    searchMovie() {
         clearTimeout(this.timer);
+
+        const searchTerm = RequestStore.getSearchTerm();
 
         if (searchTerm != "") {
             this.timer = setTimeout(() => {
-                SearchActions.searchMovie(searchTerm);
+                RequestActions.searchMovie(searchTerm);
             }, 500);
         }
         else {
-            SearchActions.clearSearch();
+            RequestActions.clearSearch();
         }
     }
 
-    searchTV(searchTerm) {
+    searchTV() {
         clearTimeout(this.timer);
+
+        const searchTerm = RequestStore.getSearchTerm();
 
         if (searchTerm != "") {
             this.timer = setTimeout(() => {
-                SearchActions.searchTV(searchTerm);
+                RequestActions.searchTV(searchTerm);
             }, 500);
         }
         else {
-            SearchActions.clearSearch();
+            RequestActions.clearSearch();
         }
     }
 

@@ -10,7 +10,9 @@ class SearchStore extends EventEmitter {
         this.message = "";
         this.loading = false;
         this.activeTab = "movies";
+        this.searchTerm = "";
         this.searchResult = [];
+        this.requests = [];
     }
 
     clearSearch() {
@@ -18,8 +20,12 @@ class SearchStore extends EventEmitter {
         this.emit("search_results_received");
     }
 
-    getAll() {
+    getSearchResult() {
         return this.searchResult;
+    }
+
+    getRequests() {
+        return this.requests;
     }
 
     getMessage() {
@@ -33,6 +39,14 @@ class SearchStore extends EventEmitter {
     setActiveTab(activeTab) {
         this.activeTab = activeTab;
         this.emit("active_tab_changed")
+    }
+
+    getSearchTerm() {
+        return this.searchTerm;
+    }
+
+    setSearchTerm(searchTerm) {
+        this.searchTerm = searchTerm;
     }
 
     handleActions(action) {
@@ -65,12 +79,29 @@ class SearchStore extends EventEmitter {
                 break;
             }
             case "REQUEST_MOVIE_SUCCESS": {
-                this.message = "Movie was successfully requested."
+                this.message = "Movie was successfully requested.";
                 this.emit("request_movie_success");
                 break;
             }
-            case "REQUEST_DELETED_MOVIE": {
-                this.emit("request_deleted_movie");
+            case "REQUEST_SHOW_ERROR": {
+                this.message = action.data;
+                this.emit("request_error");
+                break;
+            }
+            case "REQUEST_SHOW_SUCCESS": {
+                this.message = "Show was successfully requested.";
+                this.emit("request_success");
+                break;
+            }
+            case "FETCHING_REQUESTS": {
+                this.loading = true;
+                this.emit("fetching_requests");
+                break;
+            }
+            case "RECEIVED_REQUESTS": {
+                this.loading = false;
+                this.requests = action.data;
+                this.emit("received_requests");
                 break;
             }
         }

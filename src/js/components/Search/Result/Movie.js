@@ -60,7 +60,6 @@ export default class Movie extends React.Component {
                 buttonState: STATE.ERROR
             });
         });
-
     }
 
     render() {

@@ -1,9 +1,8 @@
 import React from "react";
-import dispatcher from "../../dispatcher";
-
-import axios from "axios";
 
 import MovieButton, {STATE} from "./MovieButton";
+
+import * as RequestActions from "../../actions/RequestActions";
 
 export default class Movie extends React.Component {
     constructor() {
@@ -21,15 +20,7 @@ export default class Movie extends React.Component {
 
         const { id } = this.props;
 
-        axios.delete("http://localhost:8000/movie/" + id + "/delete/").then((response) => {
-            dispatcher.dispatch({
-                type: "REQUEST_DELETED_MOVIE"
-            })
-        }).catch((error) => {
-            this.setState({
-                buttonState: STATE.ERROR
-            });
-        });
+        RequestActions.deleteMovieRequest(id);
     }
 
     render() {
