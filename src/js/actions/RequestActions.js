@@ -68,15 +68,38 @@ export function getShowRequests() {
         type: "FETCHING_REQUESTS"
     });
 
-    dispatcher.dispatch({
-        type: "RECEIVED_REQUESTS",
-        data: []
+    axios.get("http://localhost:8000/show/").then((response) => {
+        dispatcher.dispatch({
+            type: "RECEIVED_REQUESTS",
+            data: response.data
+        });
+    }).catch((error) => {
+        dispatcher.dispatch({
+            type: "RECEIVED_REQUESTS",
+            data: []
+        })
     });
 }
 
 export function deleteMovieRequest(id) {
     axios.delete("http://localhost:8000/movie/" + id + "/delete/").then((response) => {
         axios.get("http://localhost:8000/movie/").then((response) => {
+            dispatcher.dispatch({
+                type: "RECEIVED_REQUESTS",
+                data: response.data
+            });
+        }).catch((error) => {
+            dispatcher.dispatch({
+                type: "RECEIVED_REQUESTS",
+                data: []
+            })
+        });
+    }).catch((error) => {});
+}
+
+export function deleteShowRequest(id) {
+    axios.delete("http://localhost:8000/show/" + id + "/delete/").then((response) => {
+        axios.get("http://localhost:8000/show/").then((response) => {
             dispatcher.dispatch({
                 type: "RECEIVED_REQUESTS",
                 data: response.data

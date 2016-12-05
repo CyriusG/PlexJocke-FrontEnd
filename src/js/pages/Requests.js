@@ -28,7 +28,7 @@ export default class Request extends React.Component {
         if(this.state.activeTab == "movies") {
             RequestActions.getMovieRequests();
         }
-        else {
+        else if(this.state.activeTab == "tv") {
             RequestActions.getShowRequests();
         }
     }
@@ -65,7 +65,7 @@ export default class Request extends React.Component {
             if(tab == "movies") {
                 RequestActions.getMovieRequests();
             }
-            else {
+            else if(tab == "tv") {
                 RequestActions.getShowRequests();
             }
         }
@@ -90,7 +90,7 @@ export default class Request extends React.Component {
                         </div>
                     </div>
                 </div>
-                <Requests requests={requests}/>
+                <Requests requests={requests} activeTab={activeTab}/>
             </div>
         );
     }

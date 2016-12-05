@@ -1,10 +1,10 @@
 import React from "react";
 
-import MovieButton, {STATE} from "./RemoveButton";
+import RemoveButton, {STATE} from "./RemoveButton";
 
 import * as RequestActions from "../../actions/RequestActions";
 
-export default class Movie extends React.Component {
+export default class Show extends React.Component {
     constructor() {
         super();
 
@@ -20,11 +20,11 @@ export default class Movie extends React.Component {
 
         const { id } = this.props;
 
-        RequestActions.deleteMovieRequest(id);
+        RequestActions.deleteShowRequest(id);
     }
 
     render() {
-        const { title, poster, date, available, requestedBy, requestedDate } = this.props;
+        const { title, poster, seasons, date, available, requestedBy, requestedDate } = this.props;
 
         let year;
 
@@ -43,6 +43,18 @@ export default class Movie extends React.Component {
             availableIcon = <i className="fa fa-times" />;
         }
 
+        let formatedSeasons;
+
+        if(seasons == -1) {
+            formatedSeasons = "All seasons";
+        }
+        else if(seasons == -2) {
+            formatedSeasons = "Latest season";
+        }
+        else {
+            formatedSeasons = seasons;
+        }
+
         return (
             <div className="row">
                 <div className="searchResult">
@@ -51,17 +63,18 @@ export default class Movie extends React.Component {
                     </div>
                     <div className="col-md-7 col-sm-8">
                         <h2>{title} {year}</h2>
+                        <p>Seasons: {formatedSeasons}</p>
                         <p>Release date: {date}</p>
                         <p>Available: {availableIcon}</p>
                         <p>Requested by: {requestedBy}</p>
                         <p>Requested date: {requestedDate}</p>
                     </div>
                     <div className="col-md-2 col-sm-8">
-                        <MovieButton
+                        <RemoveButton
                             state={this.state.buttonState}
                             removeRequest={this.removeRequest.bind(this)}>
                             Remove
-                        </MovieButton>
+                        </RemoveButton>
                     </div>
                 </div>
             </div>

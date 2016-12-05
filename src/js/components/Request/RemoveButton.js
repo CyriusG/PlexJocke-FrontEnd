@@ -74,7 +74,7 @@ export default class MovieButton extends React.Component {
             e.preventDefault();
         }
         else {
-            this.props.removeMovieRequest();
+            this.props.removeRequest();
         }
     }
 
