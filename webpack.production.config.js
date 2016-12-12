@@ -1,5 +1,8 @@
 var debug = process.env.NODE_ENV !== "production";
+var path = require('path');
 var webpack = require('webpack');
+
+console.log(path.join(__dirname, 'src/' , 'index.html'));
 
 module.exports = {
     context: __dirname + "/src",
@@ -19,8 +22,9 @@ module.exports = {
         ]
     },
     output: {
-        path: __dirname + "/src/",
-        filename: "client.min.js"
+        path: path.join(__dirname, '/dist/'),
+        filename: 'client.min.js',
+        publicPath: '/'
     },
     plugins: debug ? [] : [
         new webpack.optimize.DedupePlugin(),
@@ -32,4 +36,8 @@ module.exports = {
             }
         })
     ],
+    resolve: {
+        root: [path.resolve('./src'), path.resolve('./src')],
+        extensions: ['', '.js', '.css']
+    },
 };
