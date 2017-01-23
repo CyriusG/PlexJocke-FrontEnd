@@ -51,16 +51,14 @@ export default class ShowButton extends React.Component {
             case STATE.ERROR: {
                 return(
                     <button className="btn btn-request error pull-right">
-                        <span>Error</span>
+                        Error
                     </button>
                 );
             }
             case STATE.LOADING: {
                 return(
                     <button className="btn btn-request loading pull-right">
-                        <span>
-                            <i class="fa fa-cog fa-spin"></i> Requesting...
-                        </span>
+                        <i class="icon-cog animate-spin" /> Requesting...
                     </button>
                 );
             }
@@ -80,7 +78,7 @@ export default class ShowButton extends React.Component {
             case STATE.SUCCESS: {
                 return(
                     <button className="btn btn-request success pull-right">
-                        <span>Success</span>
+                        Success
                     </button>
                 );
             }

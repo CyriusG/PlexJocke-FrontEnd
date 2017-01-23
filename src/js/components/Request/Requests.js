@@ -41,7 +41,7 @@ export default class Requests extends React.Component {
                     image = "https://image.tmdb.org/t/p/w184" + request.poster;
                 }
                 else {
-                    image = "https://www.themoviedb.org/assets/1c4aa0e7695a4eebe9a4d2c34a93bf34/images/no-poster-w600_and_h900_bestv2-v2.png";
+                    image = "https://static.nit13.se/img/poster.png";
                 }
 
                 return <Movie key={request.id}
@@ -58,7 +58,7 @@ export default class Requests extends React.Component {
                     image = request.poster;
                 }
                 else {
-                    image = "https://www.themoviedb.org/assets/1c4aa0e7695a4eebe9a4d2c34a93bf34/images/no-poster-w600_and_h900_bestv2-v2.png";
+                    image = "https://static.nit13.se/img/poster.png";
                 }
 
                 return <Show key={request.id}

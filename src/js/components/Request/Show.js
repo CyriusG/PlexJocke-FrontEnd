@@ -37,10 +37,10 @@ export default class Show extends React.Component {
         let availableIcon;
 
         if(available == true) {
-            availableIcon = <i className="fa fa-check" />;
+            availableIcon = <i className="icon-ok" />;
         }
         else {
-            availableIcon = <i className="fa fa-times" />;
+            availableIcon = <i className="icon-cancel" />;
         }
 
         let formatedSeasons;

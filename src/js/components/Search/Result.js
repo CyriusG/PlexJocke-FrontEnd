@@ -61,7 +61,7 @@ export default class Result extends React.Component {
                     image = "https://image.tmdb.org/t/p/w184" + result.poster_path;
                 }
                 else {
-                    image = "https://www.themoviedb.org/assets/1c4aa0e7695a4eebe9a4d2c34a93bf34/images/no-poster-w600_and_h900_bestv2-v2.png";
+                    image = "https://static.nit13.se/img/poster.png";
                 }
 
                 return <Movie key={result.id}
@@ -79,10 +79,10 @@ export default class Result extends React.Component {
                 let image;
 
                 if(result.show.image != null) {
-                    image = result.show.image.original;
+                    image = result.show.image.original.replace("http", "https");
                 }
                 else {
-                    image = "https://www.themoviedb.org/assets/1c4aa0e7695a4eebe9a4d2c34a93bf34/images/no-poster-w600_and_h900_bestv2-v2.png";
+                    image = "https://static.nit13.se/img/poster.png";
                 }
 
                 return <Show key={result.show.id}

@@ -50,30 +50,28 @@ export default class MovieButton extends React.Component {
             case STATE.ERROR: {
                 return(
                     <button onClick={this.handleRequest.bind(this)} className="btn btn-request error pull-right">
-                        <span>Error</span>
+                        Error
                     </button>
                 );
             }
             case STATE.LOADING: {
                 return(
                     <button onClick={this.handleRequest.bind(this)} className="btn btn-request loading pull-right">
-                        <span>
-                            <i class="fa fa-cog fa-spin"></i> Requesting...
-                        </span>
+                        <i class="icon-cog animate-spin" /> Requesting...
                     </button>
                 );
             }
             case STATE.NOTHING: {
                 return(
                     <button onClick={this.handleRequest.bind(this)} className="btn btn-request idle pull-right">
-                        <span>{content}</span>
+                        {content}
                     </button>
                 );
             }
             case STATE.SUCCESS: {
                 return(
                     <button onClick={this.handleRequest.bind(this)} className="btn btn-request success pull-right">
-                        <span>Success</span>
+                        Success
                     </button>
                 );
             }

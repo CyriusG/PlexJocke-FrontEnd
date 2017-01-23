@@ -15,11 +15,11 @@ h2 {
     cursor: default;
 }
 
-.fa-times {
+.icon-cancel {
     color: #B74947;
 }
 
-.fa-check {
+.icon-ok {
     color: #468847;
 }
 
@@ -72,11 +72,6 @@ h2 {
     color: #EEEEEE;
     border: 2px solid #cc7b19;
     transition: all 0.3s;
-}
-
-.btn-request.loading i {
-    height: 14px;
-    width: 14px;
 }
 
 .btn-request.loading:hover {

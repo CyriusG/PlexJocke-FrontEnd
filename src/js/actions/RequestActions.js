@@ -32,7 +32,7 @@ export function searchTV(searchTerm) {
         type: "FETCHING_SEARCH_RESULTS"
     });
 
-    axios.get("http://api.tvmaze.com/search/shows?q=" + searchTerm).then((response) => {
+    axios.get("https://api.tvmaze.com/search/shows?q=" + searchTerm).then((response) => {
             dispatcher.dispatch({
                 type: "RECEIVED_SEARCH_RESULTS",
                 data: response.data
@@ -50,7 +50,7 @@ export function getMovieRequests() {
        type: "FETCHING_REQUESTS"
     });
 
-    axios.get("http://localhost:8000/movie/").then((response) => {
+    axios.get("https://api.nit13.se/movie/").then((response) => {
         dispatcher.dispatch({
             type: "RECEIVED_REQUESTS",
             data: response.data
@@ -68,7 +68,7 @@ export function getShowRequests() {
         type: "FETCHING_REQUESTS"
     });
 
-    axios.get("http://localhost:8000/show/").then((response) => {
+    axios.get("https://api.nit13.se/show/").then((response) => {
         dispatcher.dispatch({
             type: "RECEIVED_REQUESTS",
             data: response.data
@@ -82,8 +82,8 @@ export function getShowRequests() {
 }
 
 export function deleteMovieRequest(id) {
-    axios.delete("http://localhost:8000/movie/" + id + "/delete/").then((response) => {
-        axios.get("http://localhost:8000/movie/").then((response) => {
+    axios.delete("https://api.nit13.se/movie/" + id + "/delete/").then((response) => {
+        axios.get("https://api.nit13.se/movie/").then((response) => {
             dispatcher.dispatch({
                 type: "RECEIVED_REQUESTS",
                 data: response.data
@@ -98,8 +98,8 @@ export function deleteMovieRequest(id) {
 }
 
 export function deleteShowRequest(id) {
-    axios.delete("http://localhost:8000/show/" + id + "/delete/").then((response) => {
-        axios.get("http://localhost:8000/show/").then((response) => {
+    axios.delete("https://api.nit13.se/show/" + id + "/delete/").then((response) => {
+        axios.get("https://api.nit13.se/show/").then((response) => {
             dispatcher.dispatch({
                 type: "RECEIVED_REQUESTS",
                 data: response.data

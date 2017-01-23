@@ -22,7 +22,7 @@ export default class Show extends React.Component {
         const { id, title, tvdb_id, date, poster } = this.props;
 
 
-        axios.get("http://api.tvmaze.com/shows/" + id + "/seasons").then((response) => {
+        axios.get("https://api.tvmaze.com/shows/" + id + "/seasons").then((response) => {
 
             let numSeasons;
             let requestedSeasons;
@@ -41,7 +41,7 @@ export default class Show extends React.Component {
                 requestedSeasons = "" + numSeasons;
             }
 
-            axios.post("http://localhost:8000/show/create/", {
+            axios.post("https://api.nit13.se/show/create/", {
                 title,
                 seasons: requestedSeasons,
                 release_date: date,
