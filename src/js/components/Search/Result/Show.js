@@ -2,6 +2,7 @@ import React from "react";
 import dispatcher from "../../../dispatcher";
 
 import axios from "axios";
+import cookie from 'react-cookie';
 
 import ShowButton, {STATE} from "./ShowButton";
 

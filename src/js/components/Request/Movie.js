@@ -1,6 +1,7 @@
 import React from "react";
 
 import MovieButton, {STATE} from "./RemoveButton";
+import TimeAgo from "../TimeAgo";
 
 import * as RequestActions from "../../actions/RequestActions";
 
@@ -54,7 +55,7 @@ export default class Movie extends React.Component {
                         <p>Release date: {date}</p>
                         <p>Available: {availableIcon}</p>
                         <p>Requested by: {requestedBy}</p>
-                        <p>Requested date: {requestedDate}</p>
+                        <p>Requested: <TimeAgo time={requestedDate}/></p>
                     </div>
                     <div className="col-md-2 col-sm-8">
                         <MovieButton
