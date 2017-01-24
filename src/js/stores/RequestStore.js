@@ -75,12 +75,12 @@ class SearchStore extends EventEmitter {
             }
             case "REQUEST_MOVIE_ERROR": {
                 this.message = action.data;
-                this.emit("request_movie_error");
+                this.emit("request_error");
                 break;
             }
             case "REQUEST_MOVIE_SUCCESS": {
                 this.message = "Movie was successfully requested.";
-                this.emit("request_movie_success");
+                this.emit("request_success");
                 break;
             }
             case "REQUEST_SHOW_ERROR": {

@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from 'react-dom';
 
 export const STATE = {
     ERROR: 'error',
@@ -19,10 +20,12 @@ export default class ShowButton extends React.Component {
 
     componentWillMount() {
         this.timer = null;
+        document.addEventListener('click', this.handleClick, false);
     }
 
     componentWillUnmount() {
         clearTimeout(this.timer);
+        document.removeEventListener('click', this.handleClick, false);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -98,12 +101,22 @@ export default class ShowButton extends React.Component {
         }
     }
 
+    handleClick = ((e) => {
+        if(!ReactDOM.findDOMNode(this).contains(e.target)) {
+            if(this.state.dropdown == "expanded") {
+                this.setState({
+                    dropdown: "",
+                });
+            }
+        }
+    });
+
     requestAllSeasons() {
-        this.props.requestShow("CyriusG", "joacim@cyriusg.se", "-1");
+        this.props.requestShow("-1");
     }
 
     requestLatestSeason() {
-        this.props.requestShow("CyriusG", "joacim@cyriusg.se", "-2");
+        this.props.requestShow("-2");
     }
 
     handleRequest(e) {
@@ -111,7 +124,7 @@ export default class ShowButton extends React.Component {
             e.preventDefault();
         }
         else {
-            this.props.requestShow("CyriusG", "joacim@cyriusg.se");
+            this.props.requestShow();
         }
     }
 

@@ -67,7 +67,7 @@ export default class Show extends React.Component {
                         <p>Release date: {date}</p>
                         <p>Available: {availableIcon}</p>
                         <p>Requested by: {requestedBy}</p>
-                        <p>Requested date: {requestedDate}</p>
+                        <p>Requested: {requestedDate}</p>
                     </div>
                     <div className="col-md-2 col-sm-8">
                         <RemoveButton

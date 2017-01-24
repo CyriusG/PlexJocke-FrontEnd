@@ -14,13 +14,14 @@ export default class Show extends React.Component {
         };
     }
 
-    requestShow(user, user_email, seasons) {
+    requestShow(seasons) {
         this.setState({
             buttonState: STATE.LOADING
         });
 
         const { id, title, tvdb_id, date, poster } = this.props;
 
+        let sessionid = cookie.load("sessionid");
 
         axios.get("https://api.tvmaze.com/shows/" + id + "/seasons").then((response) => {
 
@@ -47,8 +48,7 @@ export default class Show extends React.Component {
                 release_date: date,
                 tvdb_id,
                 poster,
-                user,
-                user_email
+                sessionid
             }).then((response) => {
                 this.setState({
                     buttonState: STATE.SUCCESS

@@ -83,7 +83,7 @@ export default class MovieButton extends React.Component {
             e.preventDefault();
         }
         else {
-            this.props.requestMovie("CyriusG", "joacim@cyriusg.se");
+            this.props.requestMovie();
         }
     }
 
