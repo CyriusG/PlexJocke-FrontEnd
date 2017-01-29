@@ -81,8 +81,12 @@ export function getShowRequests() {
     });
 }
 
-export function deleteMovieRequest(id) {
-    axios.delete("https://api.nit13.se/movie/" + id + "/delete/").then((response) => {
+export function deleteMovieRequest(id, sessionid) {
+    axios({
+        method: "delete",
+        url: "https://api.nit13.se/movie/" + id + "/delete/",
+        data: {sessionid}
+    }).then((response) => {
         axios.get("https://api.nit13.se/movie/").then((response) => {
             dispatcher.dispatch({
                 type: "RECEIVED_REQUESTS",
@@ -97,8 +101,12 @@ export function deleteMovieRequest(id) {
     }).catch((error) => {});
 }
 
-export function deleteShowRequest(id) {
-    axios.delete("https://api.nit13.se/show/" + id + "/delete/").then((response) => {
+export function deleteShowRequest(id, sessionid) {
+    axios({
+        method: "delete",
+        url: "https://api.nit13.se/show/" + id + "/delete/",
+        data: {sessionid}
+    }).then((response) => {
         axios.get("https://api.nit13.se/show/").then((response) => {
             dispatcher.dispatch({
                 type: "RECEIVED_REQUESTS",

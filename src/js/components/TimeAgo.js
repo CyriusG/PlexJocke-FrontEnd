@@ -11,9 +11,6 @@ export default class TimeAgo extends React.Component {
         let timeArrayString = time.split("-");
         let timeArray = timeArrayString.map(Number);
 
-        console.log(timeArray);
-        console.log(month);
-
         if(timeArray[2] == day && timeArray[1] == month && timeArray[0] == year) {
             return "today";
         }
@@ -32,8 +29,6 @@ export default class TimeAgo extends React.Component {
         }
         else if(timeArray[1] < month) {
             let monthsAgo = month - timeArray[1];
-            console.log(month);
-            console.log(monthsAgo);
 
             if(monthsAgo >= 12) {
                 return "a year ago";

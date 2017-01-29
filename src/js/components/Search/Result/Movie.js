@@ -22,7 +22,7 @@ export default class Movie extends React.Component {
 
         const { id } = this.props;
 
-         let sessionid = cookie.load("sessionid");
+        let sessionid = cookie.load("sessionid");
 
         axios.get("https://api.themoviedb.org/3/movie/" + id + "?api_key=e744a86e0e96410625e426e00487adb9")
         .then((response) => {
