@@ -42,6 +42,10 @@ export default class Header extends React.Component {
                         <ul className="nav navbar-nav">
                             <li><IndexLink activeClassName="active" to="/">Search</IndexLink></li>
                             <li><Link activeClassName="active" to="/requests/">Requests</Link></li>
+                            <li><a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cyriusg94%40gmail%2ecom&lc=SE&item_name=PlexJocke&currency_code=SEK&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted"><i className="icon-heart" /> Donate</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="https://request.nit13.se/logout/">Logout</a></li>
                         </ul>
                     </div>
                 </div>

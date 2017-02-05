@@ -1,5 +1,6 @@
 import React from "react";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+import _ from 'underscore';
 
 import Movie from "./Movie";
 import Show from "./Show";
@@ -32,7 +33,9 @@ export default class Requests extends React.Component {
     render() {
         const { requests, activeTab } = this.state;
 
-        const requestComponents = requests.map((request) => {
+        var requestsSorted = _.sortBy(requests.reverse(), 'available');
+
+        const requestComponents = requestsSorted.map((request) => {
             let image;
 
             if(activeTab == "movies") {

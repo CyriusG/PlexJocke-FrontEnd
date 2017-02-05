@@ -183,10 +183,21 @@ h2 {
     transition: color 0.3s;
 }
 
+.navbar .navbar-nav > li > a > .icon-heart {
+    color: #999999;
+    transition: color 0.3s;
+}
+
 .navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:active {
     color: #EEEEEE;
     transition: color 0.3s;
 }
+
+.navbar .navbar-nav > li > a:hover > .icon-heart, .navbar .navbar-nav .icon-heart > li > a:active {
+    color: #B74947;
+    transition: color 0.3s;
+}
+
 
 .active {
     color: #EEEEEE !important;

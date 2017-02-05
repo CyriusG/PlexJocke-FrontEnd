@@ -2,7 +2,7 @@ import React from "react";
 import cookie from 'react-cookie';
 
 import RemoveButton, {STATE} from "./RemoveButton";
-import TimeAgo from "../TimeAgo";
+import TimeAgo from 'timeago-react';
 
 import * as RequestActions from "../../actions/RequestActions";
 
@@ -39,12 +39,15 @@ export default class Show extends React.Component {
         }
 
         let availableIcon;
+        let showButton
 
         if(available == true) {
             availableIcon = <i className="icon-ok" />;
+            showButton = "";
         }
         else {
             availableIcon = <i className="icon-cancel" />;
+            showButton =  <RemoveButton state={this.state.buttonState} removeRequest={this.removeRequest.bind(this)}>Remove</RemoveButton>;
         }
 
         let formatedSeasons;
@@ -68,17 +71,12 @@ export default class Show extends React.Component {
                     <div className="col-md-7 col-sm-8">
                         <h2>{title} {year}</h2>
                         <p>Seasons: {formatedSeasons}</p>
-                        <p>Release date: {date}</p>
                         <p>Available: {availableIcon}</p>
                         <p>Requested by: {requestedBy}</p>
-                        <p>Requested: <TimeAgo time={requestedDate}/></p>
+                        <p>Requested: <TimeAgo datetime={requestedDate}/></p>
                     </div>
                     <div className="col-md-2 col-sm-8">
-                        <RemoveButton
-                            state={this.state.buttonState}
-                            removeRequest={this.removeRequest.bind(this)}>
-                            Remove
-                        </RemoveButton>
+                        {showButton}
                     </div>
                 </div>
             </div>
