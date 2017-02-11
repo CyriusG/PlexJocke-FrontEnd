@@ -45,7 +45,9 @@ export default class Show extends React.Component {
                 seasons: requestedSeasons,
                 release_date: date,
                 tvdb_id,
-                poster,
+                poster
+            }, {
+                withCredentials: true
             }).then((response) => {
                 this.setState({
                     buttonState: STATE.SUCCESS

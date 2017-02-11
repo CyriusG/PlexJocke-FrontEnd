@@ -30,7 +30,9 @@ export default class Movie extends React.Component {
                 overview,
                 release_date,
                 imdb_id,
-                poster: poster_path,
+                poster: poster_path
+            }, {
+                withCredentials: true
             }).then((response) => {
                 this.setState({
                     buttonState: STATE.SUCCESS
