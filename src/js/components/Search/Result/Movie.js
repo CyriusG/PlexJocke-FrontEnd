@@ -2,7 +2,6 @@ import React from "react";
 import dispatcher from "../../../dispatcher";
 
 import axios from "axios";
-import cookie from 'react-cookie';
 
 import MovieButton, {STATE} from "./MovieButton";
 
@@ -22,8 +21,6 @@ export default class Movie extends React.Component {
 
         const { id } = this.props;
 
-        let sessionid = cookie.load("sessionid");
-
         axios.get("https://api.themoviedb.org/3/movie/" + id + "?api_key=e744a86e0e96410625e426e00487adb9")
         .then((response) => {
             const { title, overview, release_date, imdb_id, poster_path } = response.data;
@@ -34,7 +31,6 @@ export default class Movie extends React.Component {
                 release_date,
                 imdb_id,
                 poster: poster_path,
-                sessionid
             }).then((response) => {
                 this.setState({
                     buttonState: STATE.SUCCESS

@@ -1,5 +1,4 @@
 import React from "react";
-import cookie from 'react-cookie';
 
 import MovieButton, {STATE} from "./RemoveButton";
 import TimeAgo from 'timeago-react';
@@ -21,9 +20,8 @@ export default class Movie extends React.Component {
         });
 
         const { id } = this.props;
-        let sessionid = cookie.load("sessionid");
 
-        RequestActions.deleteMovieRequest(id, sessionid);
+        RequestActions.deleteMovieRequest(id);
     }
 
     render() {

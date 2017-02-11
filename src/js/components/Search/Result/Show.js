@@ -2,7 +2,6 @@ import React from "react";
 import dispatcher from "../../../dispatcher";
 
 import axios from "axios";
-import cookie from 'react-cookie';
 
 import ShowButton, {STATE} from "./ShowButton";
 
@@ -21,8 +20,6 @@ export default class Show extends React.Component {
         });
 
         const { id, title, tvdb_id, date, poster } = this.props;
-
-        let sessionid = cookie.load("sessionid");
 
         axios.get("https://api.tvmaze.com/shows/" + id + "/seasons").then((response) => {
 
@@ -49,7 +46,6 @@ export default class Show extends React.Component {
                 release_date: date,
                 tvdb_id,
                 poster,
-                sessionid
             }).then((response) => {
                 this.setState({
                     buttonState: STATE.SUCCESS

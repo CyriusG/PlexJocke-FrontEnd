@@ -1,5 +1,4 @@
 import React from "react";
-import cookie from 'react-cookie';
 
 import RemoveButton, {STATE} from "./RemoveButton";
 import TimeAgo from 'timeago-react';
@@ -22,9 +21,7 @@ export default class Show extends React.Component {
 
         const { id } = this.props;
 
-        let sessionid = cookie.load("sessionid");
-
-        RequestActions.deleteShowRequest(id, sessionid);
+        RequestActions.deleteShowRequest(id);
     }
 
     render() {

@@ -81,11 +81,10 @@ export function getShowRequests() {
     });
 }
 
-export function deleteMovieRequest(id, sessionid) {
+export function deleteMovieRequest(id) {
     axios({
         method: "delete",
         url: "https://api.nit13.se/movie/" + id + "/delete/",
-        data: {sessionid}
     }).then((response) => {
         axios.get("https://api.nit13.se/movie/").then((response) => {
             dispatcher.dispatch({
@@ -101,11 +100,10 @@ export function deleteMovieRequest(id, sessionid) {
     }).catch((error) => {});
 }
 
-export function deleteShowRequest(id, sessionid) {
+export function deleteShowRequest(id) {
     axios({
         method: "delete",
         url: "https://api.nit13.se/show/" + id + "/delete/",
-        data: {sessionid}
     }).then((response) => {
         axios.get("https://api.nit13.se/show/").then((response) => {
             dispatcher.dispatch({
