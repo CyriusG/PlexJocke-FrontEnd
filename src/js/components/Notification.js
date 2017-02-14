@@ -15,16 +15,19 @@ export default class Notification extends React.Component {
 
         this.bound_requestError = this.requestError.bind(this);
         this.bound_requestSuccess = this.requestSuccess.bind(this);
+        this.bound_deleteError = this.deleteError.bind(this);
     }
 
     componentWillMount() {
         SearchStore.on("request_error", this.bound_requestError);
         SearchStore.on("request_success", this.bound_requestSuccess);
+        SearchStore.on("delete_error", this.bound_deleteError);
     }
 
     componentWillUnmount() {
         SearchStore.removeListener("request_error", this.bound_requestError);
         SearchStore.removeListener("request_success", this.bound_requestSuccess);
+        SearchStore.removeListener("delete_error", this.bound_deleteError);
     }
 
     requestError() {
@@ -51,6 +54,20 @@ export default class Notification extends React.Component {
         setTimeout(() => {
             this.setState({
                visible: false
+            });
+        }, 3000);
+    }
+
+    deleteError() {
+        this.setState({
+           visible: true,
+            type: "notification-error",
+            message: SearchStore.getMessage()
+        });
+
+        setTimeout(() => {
+            this.setState({
+                visible: false
             });
         }, 3000);
     }

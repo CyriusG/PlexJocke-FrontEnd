@@ -10,6 +10,7 @@ class SearchStore extends EventEmitter {
         this.message = "";
         this.loading = false;
         this.activeTab = "movies";
+        this.useronlyCheckbox = false;
         this.searchTerm = "";
         this.searchResult = [];
         this.requests = [];
@@ -39,6 +40,20 @@ class SearchStore extends EventEmitter {
     setActiveTab(activeTab) {
         this.activeTab = activeTab;
         this.emit("active_tab_changed")
+    }
+
+    getUseronlyCheckbox() {
+        return this.useronlyCheckbox;
+    }
+
+    setUseronlyCheckbox() {
+        if(!this.useronlyCheckbox) {
+            this.useronlyCheckbox = true;
+        } else {
+            this.useronlyCheckbox = false;
+        }
+
+        this.emit("useronly_checkbox_changed");
     }
 
     getSearchTerm() {
@@ -103,6 +118,11 @@ class SearchStore extends EventEmitter {
                 this.requests = action.data;
                 this.emit("received_requests");
                 break;
+            }
+            case "DELETE_REQUEST_ERROR": {
+                this.loading = false;
+                this.message = "Error deleting request.";
+                this.emit("request_error");
             }
         }
     }

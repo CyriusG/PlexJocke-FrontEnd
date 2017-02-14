@@ -12,16 +12,19 @@ export default class Request extends React.Component {
         this.state = {
             loading: false,
             activeTab: RequestStore.getActiveTab(),
+            useronlyCheckbox: RequestStore.getUseronlyCheckbox(),
             requests: RequestStore.getRequests()
         };
 
         this.bound_activeTabChanged = this.activeTabChanged.bind(this);
+        this.bound_useronlyCheckboxChanged = this.useronlyCheckboxChanged.bind(this);
         this.bound_fetchingRequests = this.fetchingRequests.bind(this);
         this.bound_receivedRequests = this.receivedRequests.bind(this);
     }
 
     componentWillMount() {
         RequestStore.on("active_tab_changed", this.bound_activeTabChanged);
+        RequestStore.on("useronly_checkbox_changed", this.bound_useronlyCheckboxChanged);
         RequestStore.on("fetching_requests", this.bound_fetchingRequests);
         RequestStore.on("received_requests", this.bound_receivedRequests);
 
@@ -35,6 +38,7 @@ export default class Request extends React.Component {
 
     componentWillUnmount () {
         RequestStore.removeListener("active_tab_changed", this.bound_activeTabChanged);
+        RequestStore.removeListener("useronly_checkbox_changed", this.bound_useronlyCheckboxChanged);
         RequestStore.removeListener("fetching_requests", this.bound_fetchingRequests);
         RequestStore.removeListener("received_requests", this.bound_receivedRequests);
     }
@@ -42,6 +46,12 @@ export default class Request extends React.Component {
     activeTabChanged() {
         this.setState({
             activeTab: RequestStore.getActiveTab()
+        });
+    }
+
+    useronlyCheckboxChanged() {
+        this.setState({
+            useronlyCheckbox: RequestStore.getUseronlyCheckbox()
         });
     }
 
@@ -71,8 +81,22 @@ export default class Request extends React.Component {
         }
     }
 
+    useronlyFilter() {
+        RequestStore.setUseronlyCheckbox();
+    }
+
     render() {
-        const { activeTab, requests, loading } = this.state;
+        const { activeTab, useronlyCheckbox, requests, loading } = this.state;
+
+        let checkbox;
+        console.log(useronlyCheckbox)
+
+        if(useronlyCheckbox) {
+            checkbox = <input type="checkbox" onClick={this.useronlyFilter.bind(this)} checked />
+        }
+        else {
+            checkbox = <input type="checkbox" onClick={this.useronlyFilter.bind(this)} />
+        }
 
         return(
             <div className="container">
@@ -90,6 +114,11 @@ export default class Request extends React.Component {
                         </div>
                     </div>
                 </div>
+                {/*<div className="row">*/}
+                    {/*<div className="col-xs-12">*/}
+                        {/*{checkbox} Only my requests*/}
+                    {/*</div>*/}
+                {/*</div>*/}
                 <Requests requests={requests} activeTab={activeTab}/>
             </div>
         );

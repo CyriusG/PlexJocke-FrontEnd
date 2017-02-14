@@ -50,7 +50,7 @@ export function getMovieRequests() {
        type: "FETCHING_REQUESTS"
     });
 
-    axios.get("https://api.nit13.se/movie/").then((response) => {
+    axios.get("https://api.nit13.se/movie/", {withCredentials: true}).then((response) => {
         dispatcher.dispatch({
             type: "RECEIVED_REQUESTS",
             data: response.data
@@ -68,7 +68,7 @@ export function getShowRequests() {
         type: "FETCHING_REQUESTS"
     });
 
-    axios.get("https://api.nit13.se/show/").then((response) => {
+    axios.get("https://api.nit13.se/show/", {withCredentials: true}).then((response) => {
         dispatcher.dispatch({
             type: "RECEIVED_REQUESTS",
             data: response.data
@@ -106,7 +106,7 @@ export function deleteShowRequest(id) {
             });
         }).catch((error) => {
             dispatcher.dispatch({
-                type: "RECEIVED_REQUESTS",
+                type: "DELETE_REQUEST_ERROR",
                 data: []
             })
         });
