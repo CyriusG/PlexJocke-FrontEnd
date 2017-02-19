@@ -33,7 +33,7 @@ export default class Requests extends React.Component {
     render() {
         const { requests, activeTab } = this.state;
 
-        var requestsSorted = _.sortBy(requests.reverse(), 'available');
+        var requestsSorted = _.sortBy(requests, 'available');
 
         const requestComponents = requestsSorted.map((request) => {
             let image;

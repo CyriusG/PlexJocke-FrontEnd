@@ -25,7 +25,7 @@ export default class Movie extends React.Component {
         .then((response) => {
             const { title, overview, release_date, imdb_id, poster_path } = response.data;
 
-            axios.post("https://api.nit13.se/movie/create/", {
+            axios.post(API_URL + "/movie/create/", {
                 title,
                 overview,
                 release_date,

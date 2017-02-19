@@ -40,7 +40,7 @@ export default class Show extends React.Component {
                 requestedSeasons = "" + numSeasons;
             }
 
-            axios.post("https://api.nit13.se/show/create/", {
+            axios.post(API_URL + "/show/create/", {
                 title,
                 seasons: requestedSeasons,
                 release_date: date,

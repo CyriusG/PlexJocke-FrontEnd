@@ -31,6 +31,9 @@ module.exports = {
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin({ mangle: true, sourcemap: true }),
         new webpack.DefinePlugin({
+            API_URL: JSON.stringify("https://api.nit13.se"),
+        }),
+        new webpack.DefinePlugin({
             'process.env': {
                 'NODE_ENV': JSON.stringify('production')
             }

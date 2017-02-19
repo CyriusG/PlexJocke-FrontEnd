@@ -45,12 +45,18 @@ export function searchTV(searchTerm) {
     });
 }
 
-export function getMovieRequests() {
+export function getMovieRequests(useronlyCheckbox) {
+    let useronly = "";
+
     dispatcher.dispatch({
        type: "FETCHING_REQUESTS"
     });
 
-    axios.get("https://api.nit13.se/movie/", {withCredentials: true}).then((response) => {
+    if(useronlyCheckbox) {
+        useronly = "?useronly=y";
+    }
+
+    axios.get(API_URL + "/movie/" + useronly, {withCredentials: true}).then((response) => {
         dispatcher.dispatch({
             type: "RECEIVED_REQUESTS",
             data: response.data
@@ -63,12 +69,18 @@ export function getMovieRequests() {
     });
 }
 
-export function getShowRequests() {
+export function getShowRequests(useronlyCheckbox) {
+    let useronly = "";
+
     dispatcher.dispatch({
         type: "FETCHING_REQUESTS"
     });
 
-    axios.get("https://api.nit13.se/show/", {withCredentials: true}).then((response) => {
+    if(useronlyCheckbox) {
+        useronly = "?useronly=y";
+    }
+
+    axios.get(API_URL + "/show/" + useronly, {withCredentials: true}).then((response) => {
         dispatcher.dispatch({
             type: "RECEIVED_REQUESTS",
             data: response.data
@@ -82,8 +94,8 @@ export function getShowRequests() {
 }
 
 export function deleteMovieRequest(id) {
-    axios.delete("https://api.nit13.se/movie/" + id + "/delete/", {withCredentials: true}).then((response) => {
-        axios.get("https://api.nit13.se/movie/").then((response) => {
+    axios.delete(API_URL + "/movie/" + id + "/delete/", {withCredentials: true}).then((response) => {
+        axios.get(API_URL + "/movie/").then((response) => {
             dispatcher.dispatch({
                 type: "RECEIVED_REQUESTS",
                 data: response.data
@@ -94,21 +106,31 @@ export function deleteMovieRequest(id) {
                 data: []
             })
         });
-    }).catch((error) => {});
+    }).catch((error) => {
+        dispatcher.dispatch({
+            type: "DELETE_REQUEST_ERROR",
+            data: []
+        })
+    });
 }
 
 export function deleteShowRequest(id) {
-    axios("https://api.nit13.se/show/" + id + "/delete/", {withCredentials: true}).then((response) => {
-        axios.get("https://api.nit13.se/show/").then((response) => {
+    axios(API_URL + "/show/" + id + "/delete/", {withCredentials: true}).then((response) => {
+        axios.get(API_URL + "/show/").then((response) => {
             dispatcher.dispatch({
                 type: "RECEIVED_REQUESTS",
                 data: response.data
             });
         }).catch((error) => {
             dispatcher.dispatch({
-                type: "DELETE_REQUEST_ERROR",
+                type: "RECEIVED_REQUESTS",
                 data: []
             })
         });
-    }).catch((error) => {});
+    }).catch((error) => {
+        dispatcher.dispatch({
+            type: "DELETE_REQUEST_ERROR",
+            data: []
+        })
+    });
 }

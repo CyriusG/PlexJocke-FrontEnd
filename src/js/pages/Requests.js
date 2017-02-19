@@ -12,7 +12,6 @@ export default class Request extends React.Component {
         this.state = {
             loading: false,
             activeTab: RequestStore.getActiveTab(),
-            useronlyCheckbox: RequestStore.getUseronlyCheckbox(),
             requests: RequestStore.getRequests()
         };
 
@@ -29,10 +28,10 @@ export default class Request extends React.Component {
         RequestStore.on("received_requests", this.bound_receivedRequests);
 
         if(this.state.activeTab == "movies") {
-            RequestActions.getMovieRequests();
+            RequestActions.getMovieRequests(RequestStore.getUseronlyCheckbox());
         }
         else if(this.state.activeTab == "tv") {
-            RequestActions.getShowRequests();
+            RequestActions.getShowRequests(RequestStore.getUseronlyCheckbox());
         }
     }
 
@@ -50,9 +49,12 @@ export default class Request extends React.Component {
     }
 
     useronlyCheckboxChanged() {
-        this.setState({
-            useronlyCheckbox: RequestStore.getUseronlyCheckbox()
-        });
+        if(this.state.activeTab == "movies") {
+            RequestActions.getMovieRequests(RequestStore.getUseronlyCheckbox());
+        }
+        else if(this.state.activeTab == "tv") {
+            RequestActions.getShowRequests(RequestStore.getUseronlyCheckbox());
+        }
     }
 
     fetchingRequests() {
@@ -73,30 +75,20 @@ export default class Request extends React.Component {
             RequestStore.setActiveTab(tab);
 
             if(tab == "movies") {
-                RequestActions.getMovieRequests();
+                RequestActions.getMovieRequests(RequestStore.getUseronlyCheckbox());
             }
             else if(tab == "tv") {
-                RequestActions.getShowRequests();
+                RequestActions.getShowRequests(RequestStore.getUseronlyCheckbox());
             }
         }
     }
 
-    useronlyFilter() {
-        RequestStore.setUseronlyCheckbox();
+    useronlyFilter(checkbox) {
+        RequestStore.setUseronlyCheckbox(checkbox.target.checked);
     }
 
     render() {
-        const { activeTab, useronlyCheckbox, requests, loading } = this.state;
-
-        let checkbox;
-        console.log(useronlyCheckbox)
-
-        if(useronlyCheckbox) {
-            checkbox = <input type="checkbox" onClick={this.useronlyFilter.bind(this)} checked />
-        }
-        else {
-            checkbox = <input type="checkbox" onClick={this.useronlyFilter.bind(this)} />
-        }
+        const { activeTab, requests, loading } = this.state;
 
         return(
             <div className="container">
@@ -114,11 +106,11 @@ export default class Request extends React.Component {
                         </div>
                     </div>
                 </div>
-                {/*<div className="row">*/}
-                    {/*<div className="col-xs-12">*/}
-                        {/*{checkbox} Only my requests*/}
-                    {/*</div>*/}
-                {/*</div>*/}
+                <div className="row">
+                    <div className="col-xs-12">
+                        <input type="checkbox" onChange={this.useronlyFilter.bind(this)} /> Only my requests
+                    </div>
+                </div>
                 <Requests requests={requests} activeTab={activeTab}/>
             </div>
         );

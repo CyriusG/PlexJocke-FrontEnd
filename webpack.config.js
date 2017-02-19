@@ -25,5 +25,8 @@ module.exports = {
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin({ mangle: true, sourcemap: true }),
+        new webpack.DefinePlugin({
+            API_URL: JSON.stringify("http://localhost:8000"),
+        })
     ],
 };

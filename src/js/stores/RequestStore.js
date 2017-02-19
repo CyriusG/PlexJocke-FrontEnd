@@ -46,12 +46,8 @@ class SearchStore extends EventEmitter {
         return this.useronlyCheckbox;
     }
 
-    setUseronlyCheckbox() {
-        if(!this.useronlyCheckbox) {
-            this.useronlyCheckbox = true;
-        } else {
-            this.useronlyCheckbox = false;
-        }
+    setUseronlyCheckbox(value) {
+        this.useronlyCheckbox = value;
 
         this.emit("useronly_checkbox_changed");
     }
@@ -115,8 +111,11 @@ class SearchStore extends EventEmitter {
             }
             case "RECEIVED_REQUESTS": {
                 this.loading = false;
-                this.requests = action.data;
-                this.emit("received_requests");
+                this.requests = [];
+                setTimeout(() => {
+                    this.requests = action.data;
+                    this.emit("received_requests");
+                }, 300);
                 break;
             }
             case "DELETE_REQUEST_ERROR": {
