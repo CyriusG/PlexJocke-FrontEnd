@@ -108,7 +108,11 @@ export default class Request extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <input type="checkbox" onChange={this.useronlyFilter.bind(this)} /> Only my requests
+                        <div class="checkbox pull-left">
+                            <label>
+                                <input type="checkbox" onChange={this.useronlyFilter.bind(this)} /> Show only my requests.
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <Requests requests={requests} activeTab={activeTab}/>
