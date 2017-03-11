@@ -106,6 +106,7 @@ class SearchStore extends EventEmitter {
             }
             case "FETCHING_REQUESTS": {
                 this.loading = true;
+                this.requests = [];
                 this.emit("fetching_requests");
                 break;
             }

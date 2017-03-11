@@ -26,7 +26,13 @@ export default class Movie extends React.Component {
     }
 
     render() {
-        const { title, poster, date, available, requestedBy, requestedDate } = this.props;
+        const { title, poster, date, available, requestedBy } = this.props;
+
+        let requestedDate = "2017-01-01";
+
+        if(this.props["requestedDate"] != null) {
+            requestedDate = this.props["requestedDate"];
+        }
 
         let year;
 

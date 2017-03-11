@@ -59,6 +59,7 @@ export default class Request extends React.Component {
 
     fetchingRequests() {
         this.setState({
+            requests: RequestStore.getRequests(),
             loading: true
         });
     }
@@ -102,7 +103,6 @@ export default class Request extends React.Component {
                     <div className="col-xs-12">
                         <div className="searchBar">
                             <Tab active={activeTab} changeTab={this.changeTab.bind(this)} />
-                            {loading ? <div className="loader-wrapper"><div className="loader-bar"></div></div> : null}
                         </div>
                     </div>
                 </div>
@@ -115,6 +115,7 @@ export default class Request extends React.Component {
                         </div>
                     </div>
                 </div>
+                {loading ? <div className="loader-wrapper"><div className="loader"></div></div> : null}
                 <Requests requests={requests} activeTab={activeTab}/>
             </div>
         );

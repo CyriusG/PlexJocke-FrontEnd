@@ -49,7 +49,6 @@ export default class Searchbar extends React.Component {
                     <div className="searchBar">
                         <SearchTab active={this.props.active} changeTab={this.changeTab.bind(this)} />
                         <input type="text" className="searchBarInput" ref="searchBar" defaultValue={searchTerm} onChange={this.handleChange.bind(this)} />
-                        {loading ? <div className="loader-wrapper"><div className="loader-bar"></div></div> : null}
                     </div>
                 </div>
             </div>

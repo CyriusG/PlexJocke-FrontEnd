@@ -134,12 +134,11 @@ export default class Search extends React.Component {
                     </div>
                 </div>
                 <Searchbar
-                    loading={loading}
                     active={activeTab}
                     changeTab={this.changeTab.bind(this)}
                     searchMovie={this.searchMovie.bind(this)}
                     searchTV={this.searchTV.bind(this)}/>
-                <Result activeTab={activeTab} results={results}/>
+                <Result loading={loading} activeTab={activeTab} results={results}/>
             </div>
         );
     }

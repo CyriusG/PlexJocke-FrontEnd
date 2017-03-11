@@ -48,7 +48,7 @@ export default class Result extends React.Component {
     render() {
 
         const { results } = this.state;
-        const { activeTab } = this.props;
+        const { loading, activeTab } = this.props;
 
         let resultComponents = null;
 
@@ -99,6 +99,8 @@ export default class Result extends React.Component {
 
         return (
             <div>
+                {loading ? <div className="loader-wrapper"><div className="loader"></div></div> : null}
+
                 <ReactCSSTransitionGroup
                     transitionName="searchResult"
                     transitionEnterTimeout={300}

@@ -25,7 +25,13 @@ export default class Show extends React.Component {
     }
 
     render() {
-        const { title, poster, seasons, date, available, requestedBy, requestedDate } = this.props;
+        const { title, poster, seasons, date, available, requestedBy } = this.props;
+
+        let requestedDate = "2017-01-01";
+
+        if(this.props["requestedDate"] != null) {
+            requestedDate = this.props["requestedDate"];
+        }
 
         let year;
 
@@ -67,7 +73,7 @@ export default class Show extends React.Component {
                     </div>
                     <div className="col-md-7 col-sm-8">
                         <h2>{title} {year}</h2>
-                        <p>Seasons: {formatedSeasons}</p>
+                        <p>Season(s): {formatedSeasons}</p>
                         <p>Available: {availableIcon}</p>
                         <p>Requested by: {requestedBy}</p>
                         <p>Requested: <TimeAgo datetime={requestedDate}/></p>
