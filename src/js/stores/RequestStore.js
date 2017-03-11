@@ -67,9 +67,13 @@ class SearchStore extends EventEmitter {
                 break;
             }
             case "FETCHING_SEARCH_RESULTS": {
-                this.loading = true;
                 this.clearSearch();
-                this.emit("search_results_fetching");
+
+                this.loading = true;
+
+                setTimeout(() => {
+                    this.emit("search_results_fetching");
+                }, 300);
                 break;
             }
             case "FETCHING_SEARCH_RESULTS_ERROR": {

@@ -99,7 +99,12 @@ export default class Result extends React.Component {
 
         return (
             <div>
-                {loading ? <div className="loader-wrapper"><div className="loader"></div></div> : null}
+                <ReactCSSTransitionGroup
+                    transitionName="dirty-trick"
+                    transitionEnterTimeout={300}
+                    transitionLeaveTimeout={1}>
+                    {loading ? <div className="loader-wrapper"><div className="loader"></div></div> : null}
+                </ReactCSSTransitionGroup>
 
                 <ReactCSSTransitionGroup
                     transitionName="searchResult"

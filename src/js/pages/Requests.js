@@ -59,9 +59,14 @@ export default class Request extends React.Component {
 
     fetchingRequests() {
         this.setState({
-            requests: RequestStore.getRequests(),
-            loading: true
+            requests: RequestStore.getRequests()
         });
+
+        setTimeout(() => {
+            this.setState({
+                loading: true
+            });
+        }, 300);
     }
 
     receivedRequests() {

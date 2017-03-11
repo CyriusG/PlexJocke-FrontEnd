@@ -11,14 +11,6 @@ h2 {
     margin-top: 10px;
 }
 
-/* Fix checkbox positioning */
-.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
-    position: absolute;
-    margin-top: 4px\9;
-    margin-left: -20px;
-    margin-top: 2px !important;
-}
-
 .navbar-brand, .navbar-brand-alt {
     cursor: default;
 }
