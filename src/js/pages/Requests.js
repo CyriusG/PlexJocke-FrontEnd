@@ -1,7 +1,9 @@
 import React from "react";
+import Dropdown from "react-dropdown"
 
 import Tab from "../components/Tab";
 import Requests from "../components/Request/Requests";
+import FilterButton from "../components/Request/FilterButton";
 
 import RequestStore from "../stores/RequestStore";
 import * as RequestActions from "../actions/RequestActions";
@@ -12,7 +14,8 @@ export default class Request extends React.Component {
         this.state = {
             loading: false,
             activeTab: RequestStore.getActiveTab(),
-            requests: RequestStore.getRequests()
+            requests: RequestStore.getRequests(),
+            filterState: RequestStore.getUseronlyCheckbox()
         };
 
         this.bound_activeTabChanged = this.activeTabChanged.bind(this);
@@ -49,6 +52,11 @@ export default class Request extends React.Component {
     }
 
     useronlyCheckboxChanged() {
+
+        this.setState({
+            filterState: RequestStore.getUseronlyCheckbox()
+        });
+
         if(this.state.activeTab == "movies") {
             RequestActions.getMovieRequests(RequestStore.getUseronlyCheckbox());
         }
@@ -89,12 +97,12 @@ export default class Request extends React.Component {
         }
     }
 
-    useronlyFilter(checkbox) {
-        RequestStore.setUseronlyCheckbox(checkbox.target.checked);
+    useronlyFilter() {
+        RequestStore.setUseronlyCheckbox();
     }
 
     render() {
-        const { activeTab, requests, loading } = this.state;
+        const { activeTab, requests, loading, filterState } = this.state;
 
         return(
             <div className="container">
@@ -113,10 +121,8 @@ export default class Request extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <div class="checkbox pull-left">
-                            <label>
-                                <input type="checkbox" onChange={this.useronlyFilter.bind(this)} /> Show only my requests.
-                            </label>
+                        <div className="checkboxes">
+                            <label for="useronlyCheckbox">My requests only: <input type="checkbox" id="useronlyCheckbox" onChange={this.useronlyFilter.bind(this)} /></label>
                         </div>
                     </div>
                 </div>

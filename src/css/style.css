@@ -23,8 +23,34 @@ h2 {
     color: #468847;
 }
 
+.dropdown-menu {
+    background: #222222;
+}
+
+.dropdown-menu>li>a {
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.dropdown-menu>li>a {
+    transition: background 0.3s;
+}
+
+.dropdown-menu>li>a:hover {
+    background: #333333;
+    color: #FFFFFF;
+}
+
+.expanded {
+    display: inline !important;
+}
+
+.btn-group {
+    border-radius: 5px !important;
+}
+
 .btn-request, .btn-request:active {
-    width: 130px;
+    width: 140px;
     background-color: transparent;
     padding: 0.7em 1em;
     text-decoration: none;
@@ -78,34 +104,8 @@ h2 {
     cursor: default;
 }
 
-.btn-group {
-    border-radius: 5px !important;
-}
-
-.dropdown-menu {
-    background: #222222;
-}
-
-.dropdown-menu>li>a {
-    color: #FFFFFF;
-    cursor: pointer;
-}
-
-.dropdown-menu>li>a {
-    transition: background 0.3s;
-}
-
-.dropdown-menu>li>a:hover {
-    background: #333333;
-    color: #FFFFFF;
-}
-
-.expanded {
-    display: inline !important;
-}
-
 .btn-delete {
-    width: 130px;
+    width: 140px;
     background-color: transparent;
     padding: 0.7em 1em;
     margin-top: 10px;
@@ -139,7 +139,6 @@ h2 {
     transition: all 0.3s;
 }
 
-
 .btn-searchTab {
     border: 0;
     background: transparent;
@@ -156,6 +155,23 @@ h2 {
 .btn-searchTab.active, .btn-searchTab.active:hover .btn-searchTab.active:active  {
     background: #cc7b19;
     color: #EEEEEE;
+}
+
+.checkboxes label {
+  display: block;
+  float: left;
+  padding-right: 10px;
+  padding-left: 22px;
+  text-indent: -22px;
+}
+.checkboxes input {
+  vertical-align: middle;
+  height: 15px;
+  width: 15px;
+  margin-top: 0;
+}
+.checkboxes label span {
+  vertical-align: middle;
 }
 
 .navbar {
@@ -322,6 +338,5 @@ h2 {
     border-radius: 50%;
     width: 50px;
     height: 50px;
-
     animation: spin 0.75s linear infinite;
 }

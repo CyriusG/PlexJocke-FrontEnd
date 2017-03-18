@@ -46,8 +46,13 @@ class SearchStore extends EventEmitter {
         return this.useronlyCheckbox;
     }
 
-    setUseronlyCheckbox(value) {
-        this.useronlyCheckbox = value;
+    setUseronlyCheckbox() {
+        if(this.useronlyCheckbox === true) {
+            this.useronlyCheckbox = false;
+        }
+        else {
+            this.useronlyCheckbox = true;
+        }
 
         this.emit("useronly_checkbox_changed");
     }
