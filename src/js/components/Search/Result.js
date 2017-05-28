@@ -3,6 +3,7 @@ import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 import Movie from "./Result/Movie";
 import Show from "./Result/Show";
+import SeasonsModal from "./Result/SeasonsModal";
 
 import SearchStore from "../../stores/RequestStore";
 
@@ -12,7 +13,7 @@ export default class Result extends React.Component {
 
         this.state = {
             results: SearchStore.getSearchResult(),
-            seasonModal: false
+            seasonsModalVisibility: false
         };
 
         this.bound_activeTabChanged = this.activeTabChanged.bind(this);
@@ -41,13 +42,22 @@ export default class Result extends React.Component {
         });
     }
 
-    toggleSeasonModal() {
-
+    toggleSeasonsModal() {
+        if(this.state.seasonsModalVisibility){
+            this.setState({
+                seasonsModalVisibility: false
+            });
+        }
+        else {
+            this.setState({
+                seasonsModalVisibility: true
+            });
+        }
     }
 
     render() {
 
-        const { results } = this.state;
+        const { results, seasonsModalVisibility } = this.state;
         const { loading, activeTab } = this.props;
 
         let resultComponents = null;
@@ -92,6 +102,7 @@ export default class Result extends React.Component {
                              overview={result.show.summary.replace(/<\/?[^>]+(>|$)/g, "")}
                              poster={image}
                              date={result.show.premiered}
+                             toggleSeasonsModal={this.toggleSeasonsModal.bind(this)}
                 />;
             });
         }
@@ -99,6 +110,8 @@ export default class Result extends React.Component {
 
         return (
             <div>
+                <SeasonsModal visible={seasonsModalVisibility} />
+
                 <ReactCSSTransitionGroup
                     transitionName="dirty-trick"
                     transitionEnterTimeout={300}

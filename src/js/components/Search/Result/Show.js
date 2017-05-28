@@ -93,7 +93,7 @@ export default class Show extends React.Component {
                     <div className="col-md-9 col-sm-8">
                         <h2>{title} {year}</h2>
                         <p>{overview}</p>
-                        <ShowButton key={id} state={this.state.buttonState} requestShow={this.requestShow.bind(this)}>
+                        <ShowButton key={id} state={this.state.buttonState} requestShow={this.requestShow.bind(this)} toggleSeasonsModal={this.props.toggleSeasonsModal}>
                             Request
                         </ShowButton>
                     </div>

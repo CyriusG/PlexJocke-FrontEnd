@@ -29,7 +29,7 @@ export default class Movie extends React.Component {
                 title,
                 overview,
                 release_date,
-                imdb_id,
+                id,
                 poster: poster_path
             }, {
                 withCredentials: true
