@@ -74,7 +74,7 @@ export default class ShowButton extends React.Component {
                         <ul className={"dropdown-menu " + this.state.dropdown}>
                             <li><a onClick={this.requestAllSeasons.bind(this)}>All Seasons</a></li>
                             <li><a onClick={this.requestLatestSeason.bind(this)}>Latest Season</a></li>
-                            <li><a onClick={this.toggleSeasonsModal.bind(this)}>Select Seasons</a></li>
+                            {/*<li><a onClick={this.toggleSeasonsModal.bind(this)}>Select Seasons</a></li>*/}
                         </ul>
                     </div>
                 );
