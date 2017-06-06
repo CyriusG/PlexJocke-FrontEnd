@@ -110,7 +110,7 @@ export default class Result extends React.Component {
 
         return (
             <div>
-                <SeasonsModal visible={seasonsModalVisibility} />
+                <SeasonsModal toggle={this.toggleSeasonsModal.bind(this)} visible={seasonsModalVisibility} />
 
                 <ReactCSSTransitionGroup
                     transitionName="dirty-trick"

@@ -15,17 +15,12 @@ h2 {
     cursor: default;
 }
 
-.icon-cancel {
+.fa-times {
     color: #B74947;
 }
 
-.icon-ok {
+.fa-check {
     color: #468847;
-}
-
-.icon-cog.animate-spin {
-    width: 20px !important;
-    height: 18px !important;
 }
 
 .dropdown-menu {
@@ -204,7 +199,7 @@ h2 {
     transition: color 0.3s;
 }
 
-.navbar .navbar-nav > li > a > .icon-heart {
+.navbar .navbar-nav > li > a > .fa-heart {
     color: #999999;
     transition: color 0.3s;
 }
@@ -214,7 +209,7 @@ h2 {
     transition: color 0.3s;
 }
 
-.navbar .navbar-nav > li > a:hover > .icon-heart, .navbar .navbar-nav .icon-heart > li > a:active {
+.navbar .navbar-nav > li > a:hover > .fa-heart, .navbar .navbar-nav .fa-heart > li > a:active {
     color: #B74947;
     transition: color 0.3s;
 }
@@ -331,9 +326,9 @@ h2 {
 .seasons-modal {
     position: fixed;
     top: 0;
-    right: 0;
-    bottom: 0;
     left: 0;
+    bottom: 0;
+    right: 0;
     z-index: 1050;
 }
 
@@ -349,7 +344,7 @@ h2 {
 }
 
 .seasons-modal-container {
-    width: 80%;
+    max-width: 640px;
     margin: 15% auto;
     border-radius: 5px;
     background-color: #282828;
@@ -359,6 +354,15 @@ h2 {
     width: 100%;
     padding: 10px;
     font-size: 14pt;
+}
+
+.seasons-modal-header > a > i.fa-times {
+    color: #AAAAAA;
+}
+
+.seasons-modal-header > a > i.fa-times:hover {
+    color: #EEEEEE;
+    cursor: pointer;
 }
 
 .seasons-modal-content {

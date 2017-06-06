@@ -1,4 +1,5 @@
 import React from "react";
+import ClickOutHandler from 'react-onclickout';
 
 export default class SeasonsModal extends React.Component {
 
@@ -18,21 +19,30 @@ export default class SeasonsModal extends React.Component {
         }
     }
     
+    onClickOut(e) {
+        this.props.toggle();
+    }
+
     generateModal(visible) {
         if(visible) {
             return(
                 <div>
                     <div class="seasons-modal-backdrop"></div>
                     <div class="seasons-modal" tabIndex="-1" role="dialog">
-                        <div class="seasons-modal-container">
-                            <div class="seasons-modal-header">
-                                <p class="pull-left">Seasons</p>
-                                <p class="pull-right">Close</p>
+                        <ClickOutHandler onClickOut={this.onClickOut.bind(this)}>
+                            <div class="seasons-modal-container">
+                                <div class="seasons-modal-header">
+                                    <p class="pull-left">Seasons</p>
+                                    <a class="pull-right" onClick={this.props.toggle}><i class="fa fa-times" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="seasons-modal-content">
+                                    <form action="">
+                                        <input type="checkbox" /> Season 1 <br />
+                                        <input type="checkbox" /> Season 2 
+                                    </form>
+                                </div>
                             </div>
-                            <div class="seasons-modal-content">
-                                <p>This is the content</p>
-                            </div>
-                        </div>
+                        </ClickOutHandler>
                     </div> 
                 </div>
             );
@@ -41,7 +51,7 @@ export default class SeasonsModal extends React.Component {
 
     render() {
 
-        const { visible } = this.state;
+        let { visible } = this.state;
 
         let modal = this.generateModal(visible);
 

@@ -57,7 +57,7 @@ export default class MovieButton extends React.Component {
             case STATE.LOADING: {
                 return(
                     <button onClick={this.handleRequest.bind(this)} className="btn btn-request loading pull-right">
-                        <i class="icon-cog animate-spin" /> Requesting...
+                        <i class="fa fa-cog fa-spin" aria-hidden="true"></i> Requesting...
                     </button>
                 );
             }

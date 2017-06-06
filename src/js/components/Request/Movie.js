@@ -46,11 +46,11 @@ export default class Movie extends React.Component {
         let movieButton;
 
         if(available == true) {
-            availableIcon = <i className="icon-ok" />;
+            availableIcon = <i className="fa fa-check" aria-hdden="true"></i>;
             movieButton = "";
         }
         else {
-            availableIcon = <i className="icon-cancel" />;
+            availableIcon = <i className="fa fa-times" aria-hidden="true"></i>;
             movieButton =  <MovieButton state={this.state.buttonState} removeRequest={this.removeRequest.bind(this)}>Remove</MovieButton>;
         }
 

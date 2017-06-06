@@ -61,7 +61,7 @@ export default class ShowButton extends React.Component {
             case STATE.LOADING: {
                 return(
                     <button className="btn btn-request loading pull-right">
-                        <i class="icon-cog animate-spin" /> Requesting...
+                        <i class="fa fa-cog fa-spin" aria-hidden="true"></i> Requesting...
                     </button>
                 );
             }
@@ -74,7 +74,7 @@ export default class ShowButton extends React.Component {
                         <ul className={"dropdown-menu " + this.state.dropdown}>
                             <li><a onClick={this.requestAllSeasons.bind(this)}>All Seasons</a></li>
                             <li><a onClick={this.requestLatestSeason.bind(this)}>Latest Season</a></li>
-                            {/*<li><a onClick={this.toggleSeasonsModal.bind(this)}>Select Seasons</a></li>*/}
+                            <li><a onClick={this.toggleSeasonsModal.bind(this)}>Select Season...</a></li>
                         </ul>
                     </div>
                 );

@@ -23,10 +23,10 @@ export default class SearchTab extends React.Component {
         return(
             <div>
                 <button className={"btn-searchTab" + movieActive} value="movies" onClick={this.changeTab.bind(this)}>
-                    <i className="icon-video" /> Movies
+                    <i class="fa fa-film" aria-hidden="true"></i> Movies
                 </button>
                 <button className={"btn-searchTab" + tvActive} value="tv" onClick={this.changeTab.bind(this)}>
-                    <i className="icon-television" /> TV Shows
+                    <i class="fa fa-television" aria-hidden="true"></i> TV Shows
                 </button>
             </div>
         );

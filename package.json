@@ -4,6 +4,7 @@
   "description": "",
   "main": "webpack.config.js",
   "dependencies": {
+    "axios": "^0.15.2",
     "babel-core": "^6.2.0",
     "babel-loader": "^6.2.0",
     "babel-plugin-add-module-exports": "^0.1.2",
@@ -15,15 +16,16 @@
     "babel-preset-stage-0": "^6.3.13",
     "compression-webpack-plugin": "^0.3.2",
     "flux": "^3.1.0",
-    "react": "^15.4.0",
+    "react": "^15.5.0",
     "react-addons-css-transition-group": "^15.4.0",
     "react-cookie": "^1.0.4",
-    "react-dom": "^15.4.0",
+    "react-dom": "^15.5.0",
+    "react-onclickoutside": "^6.0.1",
     "react-router": "^3.0.0",
     "timeago-react": "^1.0.7",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.16.2",
-    "axios": "^0.15.2"
+    "react-onclickout": "^2.0.6"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
